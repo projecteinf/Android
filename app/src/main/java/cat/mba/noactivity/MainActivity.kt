@@ -36,16 +36,16 @@ fun MainScreen(modifier: Modifier = Modifier) {
     Column(
         modifier = modifier.fillMaxSize(),
     ){
-        Main();
-        Bottom();
+        MainContent();
+        BottomMenu();
     }
 
 }
 
 @Composable
-fun Main(modifier: Modifier = Modifier) {
+fun MainContent(modifier: Modifier = Modifier) {
     Row(
-
+        modifier = modifier
     ) {
         Text(
             text = "Main Window"
@@ -54,9 +54,9 @@ fun Main(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun Bottom(modifier: Modifier = Modifier) {
+fun BottomMenu(modifier: Modifier = Modifier) {
     Row(
-
+        modifier = modifier
     ){
         Text(
             text = "Menu Bottom"
