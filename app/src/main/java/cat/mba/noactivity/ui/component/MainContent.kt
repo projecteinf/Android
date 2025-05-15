@@ -13,7 +13,7 @@ import androidx.compose.material3.Text
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun MainContent() {
+fun MainContent(modifier: Modifier = Modifier) {
     Column(
         modifier = Modifier
             .fillMaxSize()

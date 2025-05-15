@@ -11,7 +11,7 @@ import cat.mba.noactivity.ui.component.MainContent
 import cat.mba.noactivity.ui.component.BottomMenu
 
 @Composable
-fun MainScreen() {
+fun MainScreen(modifier: Modifier = Modifier) {
     Scaffold(
         bottomBar = { BottomMenu() }
     )  {

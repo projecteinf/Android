@@ -17,7 +17,7 @@ import androidx.compose.material3.Text
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun BottomMenu() {
+fun BottomMenu(modifier: Modifier = Modifier) {
     NavigationBar (
         modifier = Modifier
             .fillMaxWidth()
