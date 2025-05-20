@@ -12,17 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NoActivity"
         tools:targetApi="31" >
-        <activity
-            android:name=".ui.screen.MainScreen"
-            android:exported="false"
-            android:label="@string/title_activity_main_screen"
-            android:theme="@style/Theme.NoActivity" />
-        <activity
-            android:name=".ui.component.MainContent"
-            android:exported="false"
-            android:label="MainContent"
-            android:theme="@style/Theme.NoActivity" />
-        -->
+
         <activity
             android:name=".MainActivity"
             android:exported="true" >

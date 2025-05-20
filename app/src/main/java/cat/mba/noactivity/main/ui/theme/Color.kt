@@ -1,4 +1,4 @@
-package cat.mba.noactivity.ui.component.ui.theme
+package cat.mba.noactivity.main.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

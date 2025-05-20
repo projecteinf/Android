@@ -1,4 +1,4 @@
-package cat.mba.noactivity.ui.screen
+package cat.mba.noactivity.main.screen
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -7,8 +7,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import cat.mba.noactivity.ui.component.MainContent
-import cat.mba.noactivity.ui.component.BottomMenu
+import cat.mba.noactivity.main.component.BottomMenu
+import cat.mba.noactivity.main.component.MainContent
 
 @Composable
 fun MainScreen(modifier: Modifier = Modifier) {
