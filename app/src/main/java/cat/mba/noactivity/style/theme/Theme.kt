@@ -1,4 +1,4 @@
-package cat.mba.noactivity.main.ui.theme
+package cat.mba.noactivity.style.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
