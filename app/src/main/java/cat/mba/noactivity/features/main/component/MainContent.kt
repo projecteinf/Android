@@ -1,4 +1,4 @@
-package cat.mba.noactivity.main.component
+package cat.mba.noactivity.features.main.component
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row

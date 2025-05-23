@@ -1,4 +1,4 @@
-package cat.mba.noactivity.style.theme
+package cat.mba.noactivity.core.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
