@@ -1,4 +1,4 @@
-package cat.mba.noactivity.features.settings.screen.component
+package cat.mba.noactivity.features.settings.component
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
