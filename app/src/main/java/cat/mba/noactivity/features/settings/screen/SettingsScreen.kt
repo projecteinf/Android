@@ -11,7 +11,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import cat.mba.noactivity.features.main.component.BottomMenu
+import cat.mba.noactivity.features.common.menu.BottomMenu
 import cat.mba.noactivity.features.settings.component.SettingsContent
 
 

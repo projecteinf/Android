@@ -1,4 +1,4 @@
-package cat.mba.noactivity.features.main.component
+package cat.mba.noactivity.features.common.menu
 
 import android.content.Intent
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -11,10 +11,6 @@ import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
@@ -24,9 +20,10 @@ import cat.mba.noactivity.features.settings.SettingsActivity
 @Composable
 fun BottomMenu(selectedItem: String,
                onItemSelected: (String) -> Unit,
-               modifier: Modifier = Modifier) {
-    NavigationBar (
-        modifier = Modifier
+               modifier: Modifier = Modifier.Companion
+) {
+    NavigationBar(
+        modifier = Modifier.Companion
             .fillMaxWidth()
             .padding(16.dp)
     ) {
@@ -52,5 +49,3 @@ fun BottomMenu(selectedItem: String,
         )
     }
 }
-
-
