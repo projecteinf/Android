@@ -23,7 +23,9 @@ fun SettingsScreen()
 
     BaseScreen(
         selectedItem = selectedItem,
-        onItemSelected = { selectedItem = it },
-        content = { SettingsContent() }
+        onItemSelected = { selectedItem = it }
     )
+    {
+        SettingsContent()
+    }
 }

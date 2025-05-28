@@ -20,7 +20,8 @@ fun MainScreen(modifier: Modifier = Modifier) {
     var selectedItem by remember { mutableStateOf("home") }
     BaseScreen(
         selectedItem = selectedItem,
-        onItemSelected = { selectedItem = it },
-        content = { MainContent() }
-    )
+        onItemSelected = { selectedItem = it })
+    {
+       MainContent()
+    }
 }
