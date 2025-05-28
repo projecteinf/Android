@@ -11,26 +11,16 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import cat.mba.noactivity.features.common.BaseScreen
 import cat.mba.noactivity.features.common.menu.BottomMenu
 import cat.mba.noactivity.features.main.component.MainContent
 
 @Composable
 fun MainScreen(modifier: Modifier = Modifier) {
     var selectedItem by remember { mutableStateOf("home") }
-    Scaffold(
-        bottomBar = { BottomMenu(
-            selectedItem = selectedItem,
-            onItemSelected = { selectedItem = it }
-        ) }
-    )  {
-            innerPadding ->
-        Surface(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding),
-            color = MaterialTheme.colorScheme.background
-        ) {
-            MainContent()
-        }
-    }
+    BaseScreen(
+        selectedItem = selectedItem,
+        onItemSelected = { selectedItem = it },
+        content = { MainContent() }
+    )
 }

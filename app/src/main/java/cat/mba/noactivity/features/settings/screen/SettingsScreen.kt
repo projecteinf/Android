@@ -11,6 +11,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import cat.mba.noactivity.features.common.BaseScreen
 import cat.mba.noactivity.features.common.menu.BottomMenu
 import cat.mba.noactivity.features.settings.component.SettingsContent
 
@@ -20,20 +21,9 @@ fun SettingsScreen()
 {
     var selectedItem by remember { mutableStateOf("settings") }
 
-    Scaffold(
-        bottomBar = { BottomMenu(
-            selectedItem = selectedItem,
-            onItemSelected = { selectedItem = it }
-        ) }
-    )  {
-            innerPadding ->
-        Surface(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding),
-            color = MaterialTheme.colorScheme.background
-        ) {
-            SettingsContent()
-        }
-    }
+    BaseScreen(
+        selectedItem = selectedItem,
+        onItemSelected = { selectedItem = it },
+        content = { SettingsContent() }
+    )
 }
