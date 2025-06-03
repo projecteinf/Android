@@ -11,7 +11,7 @@ data class MenuOption(
     val icon: ImageVector
 )
 
-val bottomMenuItems = listOf(
+val bottomMenuMainItems = listOf(
     MenuOption("home", "Home", Icons.Default.Home),
     MenuOption("settings", "Settings", Icons.Default.Settings)
 )

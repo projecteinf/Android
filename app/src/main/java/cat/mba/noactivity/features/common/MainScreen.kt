@@ -11,7 +11,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import cat.mba.noactivity.features.common.menu.BottomMenu
-import cat.mba.noactivity.features.common.menu.bottomMenuItems
+import cat.mba.noactivity.features.common.menu.bottomMenuMainItems
 import cat.mba.noactivity.features.main.component.MainContent
 import cat.mba.noactivity.features.settings.component.SettingsContent
 
@@ -22,7 +22,7 @@ fun MainScreen() {
 
     Scaffold(
         bottomBar = {
-            BottomMenu(navController = navController, bottomMenuItems)
+            BottomMenu(navController = navController, bottomMenuMainItems)
         }
     ) { innerPadding ->
         Surface(
