@@ -7,21 +7,21 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import cat.mba.noactivity.features.common.menu.BottomMenu
+import cat.mba.noactivity.features.main.component.MainContent
+import cat.mba.noactivity.features.settings.component.SettingsContent
 
 
 @Composable
-fun BaseScreen(
-    selectedItem: String,
-    onItemSelected: (String) -> Unit,
-    content: @Composable () -> Unit
-) {
+fun BaseScreen() {
+    val navController = rememberNavController()
+
     Scaffold(
         bottomBar = {
-            BottomMenu(
-                selectedItem = selectedItem,
-                onItemSelected = onItemSelected
-            )
+            BottomMenu(navController = navController)
         }
     ) { innerPadding ->
         Surface(
@@ -30,7 +30,14 @@ fun BaseScreen(
                 .padding(innerPadding),
             color = MaterialTheme.colorScheme.background
         ) {
-            content()
+            NavHost(
+                navController = navController,
+                startDestination = "home"
+            ) {
+                composable("home") { MainContent() }
+                composable("settings") { SettingsContent() }
+            }
         }
     }
 }
+

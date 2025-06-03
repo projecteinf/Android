@@ -4,8 +4,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import cat.mba.noactivity.features.main.screen.MainScreen
 import cat.mba.noactivity.core.theme.NoActivityTheme
+import cat.mba.noactivity.features.common.BaseScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -13,7 +13,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             NoActivityTheme {
-                    MainScreen()
+                    BaseScreen()
             }
         }
     }
