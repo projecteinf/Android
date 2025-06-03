@@ -14,7 +14,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 
 @Composable
-fun BottomMenu(navController: NavController) {
+fun BottomMenu(navController: NavController, menuItems: List<MenuOption>) {
     val currentBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = currentBackStackEntry?.destination?.route
 
@@ -23,14 +23,12 @@ fun BottomMenu(navController: NavController) {
             .fillMaxWidth()
             .padding(8.dp)
     ) {
-        bottomMenuItems.forEach { item ->
+        menuItems.forEach { item ->
             NavigationBarItem(
                 icon = { Icon(item.icon, contentDescription = item.label) },
                 label = { Text(item.label) },
                 selected = currentRoute?.trim()?.uppercase() == item.route.trim().uppercase(),
                 onClick = {
-                    println("Ruta actual: $currentRoute")
-                    println(item)
                     if (currentRoute != item.route) {
                         navController.navigate(item.route) {
                             popUpTo(navController.graph.startDestinationId) {

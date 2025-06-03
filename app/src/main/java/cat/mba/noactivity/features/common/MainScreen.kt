@@ -11,17 +11,18 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import cat.mba.noactivity.features.common.menu.BottomMenu
+import cat.mba.noactivity.features.common.menu.bottomMenuItems
 import cat.mba.noactivity.features.main.component.MainContent
 import cat.mba.noactivity.features.settings.component.SettingsContent
 
 
 @Composable
-fun BaseScreen() {
+fun MainScreen() {
     val navController = rememberNavController()
 
     Scaffold(
         bottomBar = {
-            BottomMenu(navController = navController)
+            BottomMenu(navController = navController, bottomMenuItems)
         }
     ) { innerPadding ->
         Surface(
