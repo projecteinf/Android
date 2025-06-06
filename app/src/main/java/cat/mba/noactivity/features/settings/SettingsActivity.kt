@@ -14,7 +14,7 @@ class SettingsActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             NoActivityTheme {
-                MainScreen();
+                MainScreen("Settings");
             }
         }
     }

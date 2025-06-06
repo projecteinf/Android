@@ -13,7 +13,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             NoActivityTheme {
-                    MainScreen()
+                MainScreen(title = "Home")
             }
         }
     }
