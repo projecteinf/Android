@@ -1,4 +1,4 @@
-package cat.mba.noactivity
+package cat.mba.noactivity.features.main
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
