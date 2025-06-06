@@ -5,7 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import cat.mba.noactivity.core.theme.NoActivityTheme
-import cat.mba.noactivity.features.common.MainScreen
+import cat.mba.noactivity.features.common.screen.MainScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

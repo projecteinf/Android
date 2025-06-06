@@ -1,4 +1,4 @@
-package cat.mba.noactivity.features.common
+package cat.mba.noactivity.features.common.screen
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -9,8 +9,8 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -18,6 +18,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import cat.mba.noactivity.features.common.menu.BottomMenu
 import cat.mba.noactivity.features.common.menu.bottomMenuMainItems
+import cat.mba.noactivity.features.common.screen.library.getTopBarTitle
 import cat.mba.noactivity.features.main.component.MainContent
 import cat.mba.noactivity.features.settings.component.SettingsContent
 
@@ -31,16 +32,12 @@ fun MainScreen(title:String) {
     val currentRoute = currentBackStackEntry?.destination?.route
 
     // Determinem el títol segons la ruta
-    val title = when (currentRoute) {
-        "home" -> "Home"
-        "settings" -> "Settings"
-        else -> "App"
-    }
+    val title = getTopBarTitle(currentRoute)
 
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(title) },
+                title = { Text(title.toString()) },
                 colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primary,
                     titleContentColor = MaterialTheme.colorScheme.onPrimary
@@ -52,7 +49,7 @@ fun MainScreen(title:String) {
         }
     ) { innerPadding ->
         Surface(
-            modifier = Modifier
+            modifier = Modifier.Companion
                 .fillMaxSize()
                 .padding(innerPadding),
             color = MaterialTheme.colorScheme.background
@@ -67,4 +64,3 @@ fun MainScreen(title:String) {
         }
     }
 }
-

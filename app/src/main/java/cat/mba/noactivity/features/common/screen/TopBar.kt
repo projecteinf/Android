@@ -1,3 +1,4 @@
+package cat.mba.noactivity.features.common.screen
 
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -10,7 +11,7 @@ import androidx.compose.ui.Modifier
 @OptIn(ExperimentalMaterial3Api::class)
 
 @Composable
-fun TopBar(title: String, modifier: Modifier = Modifier) {
+fun TopBar(title: String, modifier: Modifier = Modifier.Companion) {
     CenterAlignedTopAppBar(
         title = { Text(title) },
         colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
