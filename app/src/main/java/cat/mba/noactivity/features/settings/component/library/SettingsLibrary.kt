@@ -4,12 +4,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
-import cat.mba.noactivity.R
 
 @Composable
-fun LabelEnableNotifications() {
+fun LabelEnableNotifications(labelId: kotlin.Int) {
     Text(
-        text = stringResource(id = R.string.settings_enable_notifications),
+        text = stringResource(id = labelId),
         style = MaterialTheme.typography.labelSmall
     )
 }

@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import cat.mba.noactivity.R
 import cat.mba.noactivity.features.settings.component.library.LabelEnableNotifications
 
 @Composable
@@ -17,7 +18,7 @@ fun SettingsContent(modifier: Modifier = Modifier) {
             .fillMaxSize()
             .padding(16.dp)
     ) {
-        LabelEnableNotifications()
+        LabelEnableNotifications(R.string.settings_enable_notifications)
 
         Spacer(modifier = Modifier.height(8.dp))
 
