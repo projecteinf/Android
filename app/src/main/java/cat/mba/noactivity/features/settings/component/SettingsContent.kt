@@ -18,14 +18,18 @@ fun SettingsContent(modifier: Modifier = Modifier) {
             .fillMaxSize()
             .padding(16.dp)
     ) {
-        Text(
-            text = "Contingut principal settings",
-            style = MaterialTheme.typography.headlineMedium
-        )
+        TitleSettings()
+
+
         Spacer(modifier = Modifier.height(8.dp))
-        Text(
-            text = "Aquí pots mostrar les dades o components que vulguis.",
-            style = MaterialTheme.typography.bodyLarge
-        )
+
     }
+}
+
+@Composable
+private fun TitleSettings() {
+    Text(
+        text = "Configuració avisos",
+        style = MaterialTheme.typography.headlineMedium
+    )
 }
