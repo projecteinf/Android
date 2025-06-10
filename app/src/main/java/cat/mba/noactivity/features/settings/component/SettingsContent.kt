@@ -12,7 +12,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import cat.mba.noactivity.R
-import cat.mba.noactivity.features.settings.component.library.LabelEnableNotifications
 import cat.mba.noactivity.features.settings.component.library.NotificationSwitch
 
 
@@ -25,13 +24,10 @@ fun SettingsContent(modifier: Modifier = Modifier) {
     ) {
         val notificationsEnabled = remember { mutableStateOf(false) }
 
-
-        LabelEnableNotifications(R.string.settings_enable_notifications)
-
-        NotificationSwitch(notificationsEnabled)
+        NotificationSwitch(R.string.settings_enable_notifications,notificationsEnabled)
         Log.d("INFO","Notifications enabled: "+notificationsEnabled.value)
 
-       Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(8.dp))
 
     }
 }

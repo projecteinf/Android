@@ -9,29 +9,13 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.ui.res.stringResource
 
 @Composable
-fun LabelEnableNotifications(labelId: kotlin.Int) {
-    Text(
-        text = stringResource(id = labelId),
-        style = MaterialTheme.typography.labelSmall
-    )
-}
-
-@Composable
-fun SwitchNotifications(isEnabled: Boolean, onToggle: (Boolean) -> Unit) {
-
-    Column {
-        Switch(
-            checked = isEnabled,
-            onCheckedChange = { checked -> onToggle(checked) }
-        )
-    }
-}
-
-
-@Composable
-fun NotificationSwitch(notificationsEnabled: MutableState<Boolean>)
+fun NotificationSwitch(labelId: kotlin.Int,notificationsEnabled: MutableState<Boolean>)
 {
     Column {
+        Text(
+            text = stringResource(id = labelId),
+            style = MaterialTheme.typography.labelSmall
+        )
         Switch(
             checked = notificationsEnabled.value,
             onCheckedChange = { notificationsEnabled.value = it }
