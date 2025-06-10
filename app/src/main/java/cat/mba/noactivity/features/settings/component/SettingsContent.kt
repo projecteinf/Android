@@ -1,6 +1,5 @@
 package cat.mba.noactivity.features.settings.component
 
-import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -13,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import cat.mba.noactivity.R
 import cat.mba.noactivity.features.settings.component.library.NotificationSwitch
+import cat.mba.noactivity.features.settings.component.library.ParametritzacioNotificacio
 
 
 @Composable
@@ -25,8 +25,7 @@ fun SettingsContent(modifier: Modifier = Modifier) {
         val notificationsEnabled = remember { mutableStateOf(false) }
 
         NotificationSwitch(R.string.settings_enable_notifications,notificationsEnabled)
-        Log.d("INFO","Notifications enabled: "+notificationsEnabled.value)
-
+        ParametritzacioNotificacio()
         Spacer(modifier = Modifier.height(8.dp))
 
     }
