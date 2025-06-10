@@ -31,8 +31,7 @@ fun SettingsContent(modifier: Modifier = Modifier) {
         SwitchNotifications(
             isEnabled = notificationsEnabled,
             onToggle =  {
-                newValue ->
-                    notificationsEnabled = newValue
+                    notificationsEnabled = it
                     Log.d("Notifications enabled", notificationsEnabled.toString())
             }
         )
