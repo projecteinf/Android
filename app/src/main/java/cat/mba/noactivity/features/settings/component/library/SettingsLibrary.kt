@@ -1,6 +1,8 @@
 package cat.mba.noactivity.features.settings.component.library
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
@@ -11,4 +13,15 @@ fun LabelEnableNotifications(labelId: kotlin.Int) {
         text = stringResource(id = labelId),
         style = MaterialTheme.typography.labelSmall
     )
+}
+
+@Composable
+fun SwitchNotifications(isEnabled: Boolean, onToggle: (Boolean) -> Unit) {
+
+    Column {
+        Switch(
+            checked = isEnabled,
+            onCheckedChange = { checked -> onToggle(checked) }
+        )
+    }
 }
