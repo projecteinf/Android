@@ -9,5 +9,6 @@
     <string name="title_activity_settings_screen">SettingsScreen</string>
     <string name="settings_enable_notifications">Habilitar notificacions</string>
     <string name="settings_add_btn_interval">Afegir</string>
-    <string name="settings_km_inicial">Quilòmetre a partir del qual aplicar notificació</string>
+    <string name="settings_km_start">Quilòmetre a partir del qual aplicar notificació</string>
+    <string name="settings_from_km">Notificació a partir del quilòmetre:</string>
 </resources>

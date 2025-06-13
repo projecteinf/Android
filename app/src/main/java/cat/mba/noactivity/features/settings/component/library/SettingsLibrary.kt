@@ -6,11 +6,15 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import cat.mba.noactivity.R
 
@@ -39,25 +43,39 @@ fun ParametritzacioNotificacio(modifier: Modifier = Modifier) {
         verticalAlignment = Alignment.CenterVertically
     )
     {
-        Text(
-            text = stringResource(id = R.string.settings_km_inicial),
-            style = MaterialTheme.typography.labelSmall )
-
+        val textFieldValue = remember { mutableStateOf(TextFieldValue()) }
+        TextField(
+            value = textFieldValue.value,
+            onValueChange = { textFieldValue.value = it },
+            label = {
+                Text(
+                    text = stringResource(id = R.string.settings_km_start)
+                )
+            },
+            modifier = Modifier
+        )
     }
 }
 
 @Composable
-fun AfegirLiniaConfiguracio(modifier: Modifier = Modifier)
-{
-    TextButton(
-        onClick = {},
-        enabled = true,
-        modifier = Modifier.padding( horizontal = 2.dp),
-        content = {
-            Text(
-                text = stringResource(id = R.string.settings_add_btn_interval),
-                style = MaterialTheme.typography.labelSmall )
-        }
+fun AfegirBtn(modifier: Modifier = Modifier) {
+    Row (
+
     )
+    {
+        TextButton(
+            onClick = {},
+            enabled = true,
+            modifier = Modifier,
+            content = {
+                Text(
+                    text = stringResource(id = R.string.settings_add_btn_interval),
+                    style = MaterialTheme.typography.labelSmall )
+            }
+        )
+
+    }
 }
+
+
 
