@@ -11,6 +11,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import cat.mba.noactivity.R
+import cat.mba.noactivity.features.settings.component.library.AfegirLiniaConfiguracio
 import cat.mba.noactivity.features.settings.component.library.NotificationSwitch
 import cat.mba.noactivity.features.settings.component.library.ParametritzacioNotificacio
 
@@ -27,6 +28,7 @@ fun SettingsContent(modifier: Modifier = Modifier) {
         NotificationSwitch(R.string.settings_enable_notifications,notificationsEnabled)
         if (notificationsEnabled.value) {
             ParametritzacioNotificacio()
+            AfegirLiniaConfiguracio()
             Spacer(modifier = Modifier.height(8.dp))
         }
 

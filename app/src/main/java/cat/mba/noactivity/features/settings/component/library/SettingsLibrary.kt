@@ -42,16 +42,22 @@ fun ParametritzacioNotificacio(modifier: Modifier = Modifier) {
         Text(
             text = stringResource(id = R.string.settings_km_inicial),
             style = MaterialTheme.typography.labelSmall )
-        TextButton(
-            onClick = {},
-            enabled = true,
-            modifier = Modifier.padding( horizontal = 10.dp),
-            content = {
-                Text(
-                    text = stringResource(id = R.string.settings_add_btn_interval),
-                    style = MaterialTheme.typography.labelSmall )
-            }
-        )
+
     }
+}
+
+@Composable
+fun AfegirLiniaConfiguracio(modifier: Modifier = Modifier)
+{
+    TextButton(
+        onClick = {},
+        enabled = true,
+        modifier = Modifier.padding( horizontal = 2.dp),
+        content = {
+            Text(
+                text = stringResource(id = R.string.settings_add_btn_interval),
+                style = MaterialTheme.typography.labelSmall )
+        }
+    )
 }
 
