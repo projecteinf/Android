@@ -25,8 +25,11 @@ fun SettingsContent(modifier: Modifier = Modifier) {
         val notificationsEnabled = remember { mutableStateOf(false) }
 
         NotificationSwitch(R.string.settings_enable_notifications,notificationsEnabled)
-        ParametritzacioNotificacio()
-        Spacer(modifier = Modifier.height(8.dp))
+        if (notificationsEnabled.value) {
+            ParametritzacioNotificacio()
+            Spacer(modifier = Modifier.height(8.dp))
+        }
+
 
     }
 }
