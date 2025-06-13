@@ -38,15 +38,63 @@ fun NotificationSwitch(labelId: Int,notificationsEnabled: MutableState<Boolean>,
 }
 
 @Composable
-fun ParametritzacioNotificacio(modifier: Modifier = Modifier) {
+fun ParametritzacioNotificacio(modifier: Modifier = Modifier)
+{
+    KmsInicials()
+    KmsAvis()
+    LimitNotificacions()
+}
+
+@Composable
+fun LimitNotificacions(modifier: Modifier = Modifier) {
     Row (
         verticalAlignment = Alignment.CenterVertically
     )
     {
-        val textFieldValue = remember { mutableStateOf(TextFieldValue()) }
+        val kmsAvis = remember { mutableStateOf(TextFieldValue()) }
         TextField(
-            value = textFieldValue.value,
-            onValueChange = { textFieldValue.value = it },
+            value = kmsAvis.value,
+            onValueChange = { kmsAvis.value = it },
+            label = {
+                Text(
+                    text = stringResource(id = R.string.settings_limit_notificacions)
+                )
+            },
+            modifier = Modifier
+        )
+    }
+}
+
+@Composable
+fun KmsAvis(modifier: Modifier = Modifier) {
+    Row (
+        verticalAlignment = Alignment.CenterVertically
+    )
+    {
+        val kmsAvis = remember { mutableStateOf(TextFieldValue()) }
+        TextField(
+            value = kmsAvis.value,
+            onValueChange = { kmsAvis.value = it },
+            label = {
+                Text(
+                    text = stringResource(id = R.string.settings_km_avis)
+                )
+            },
+            modifier = Modifier
+        )
+    }
+}
+
+@Composable
+fun KmsInicials(modifier: Modifier = Modifier) {
+    Row (
+        verticalAlignment = Alignment.CenterVertically
+    )
+    {
+        val kmsInicial = remember { mutableStateOf(TextFieldValue()) }
+        TextField(
+            value = kmsInicial.value,
+            onValueChange = { kmsInicial.value = it },
             label = {
                 Text(
                     text = stringResource(id = R.string.settings_km_start)
@@ -73,9 +121,6 @@ fun AfegirBtn(modifier: Modifier = Modifier) {
                     style = MaterialTheme.typography.labelSmall )
             }
         )
-
     }
 }
-
-
 
