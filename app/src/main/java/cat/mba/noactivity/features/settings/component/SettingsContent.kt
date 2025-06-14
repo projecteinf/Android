@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import cat.mba.noactivity.R
 import cat.mba.noactivity.features.settings.component.library.AfegirBtn
@@ -26,14 +27,18 @@ fun SettingsContent(modifier: Modifier = Modifier) {
         val notificationsEnabled = remember { mutableStateOf(false) }
 
         NotificationSwitch(R.string.settings_enable_notifications,notificationsEnabled)
+
+
         if (notificationsEnabled.value) {
 
-            ParametritzacioNotificacio()
+            val limitNotifications = remember { mutableStateOf(TextFieldValue()) }
+            val kmsAvis = remember { mutableStateOf(TextFieldValue()) }
+            val kmsInicial = remember { mutableStateOf(TextFieldValue()) }
+
+            ParametritzacioNotificacio(limitNotifications,kmsInicial,kmsAvis)
             AfegirBtn()
             Spacer(modifier = Modifier.height(8.dp))
         }
-
-
     }
 }
 
