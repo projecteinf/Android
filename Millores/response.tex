@@ -1,0 +1,359 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{parskip}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage[sc]{mathpazo}
+\usepackage{noto}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalsize\itshape}{\thesubsubsection}{1em}{}
+
+\begin{document}
+
+\begin{center}
+    \textbf{\Large Anàlisi i millora de l'estructura en Kotlin amb Jetpack Compose}
+\end{center}
+
+\section{Anàlisi del codi}
+
+% Explicant l'estructura general
+L'estructura proporcionada utilitza Jetpack Compose per crear una interfície d'usuari en Android amb Kotlin. El codi està ben modularitzat, amb components \texttt{Composable} com \texttt{SettingsContent}, \texttt{NotificationSwitch}, \texttt{ParametritzacioNotificacio}, i altres, que estructuren la interfície amb \texttt{Column} i \texttt{Row}. L'ús de \texttt{Modifier} és adequat en la majoria dels casos, i la gestió de l'estat amb \texttt{remember \{ mutableStateOf() \}} és correcta per mantenir la reactivitat.
+
+% Assenyalant problemes potencials
+\subsection{Problemes potencials}
+\begin{itemize}
+    \item \textbf{Objecte \texttt{Configuracio}:} Es crea un objecte \texttt{Configuracio(0f, 0f, 0)} a \texttt{ParametritzacioNotificacio}, però no s'utilitza. Això pot ser un error o codi incomplet.
+    \item \textbf{Validació d'entrada:} Els \texttt{TextField} permeten qualsevol entrada, però sembla que s'esperen valors numèrics (p. ex., quilòmetres). No hi ha validació per assegurar entrades vàlides.
+    \item \textbf{Botó \texttt{AfegirBtn}:} El \texttt{TextButton} té un \texttt{onClick} buit, cosa que indica que la funcionalitat no està implementada.
+    \item \textbf{Modificadors buits:} Alguns \texttt{Modifier} són passats com a paràmetres però no s'utilitzen, cosa que pot ser confusa.
+    \item \textbf{Espaiat i estil:} L'ús de \texttt{Spacer} no és consistent, i l'aspecte visual podria millorar-se amb més espaiat i estil.
+\end{itemize}
+
+% Descrivint la funcionalitat
+\subsection{Funcionalitat}
+El codi mostra una interfície amb un \texttt{Switch} que activa/desactiva camps de text i un botó. Tanmateix, no hi ha lògica per processar o emmagatzemar els valors dels \texttt{TextField}, com guardar-los en una base de dades o utilitzar-los per a notificacions.
+
+\section{Suggeriments de millora}
+
+% Proposant validació d'entrada
+\subsection{Validació d'entrada als \texttt{TextField}}
+Per assegurar que els camps \texttt{kmsInicial}, \texttt{kmsAvis}, i \texttt{limitNotifications} acceptin només números, es pot utilitzar \texttt{keyboardType = KeyboardType.Number} i validar les entrades a \texttt{onValueChange}.
+
+% Exemple de codi per validació
+\begin{lstlisting}[language=Kotlin]
+@Composable
+fun KmsInicials(kmsInicial: MutableState<TextFieldValue>, modifier: Modifier = Modifier) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = modifier.fillMaxWidth()
+    ) {
+        TextField(
+            value = kmsInicial.value,
+            onValueChange = { newValue ->
+                if (newValue.text.isEmpty() || newValue.text.toFloatOrNull() != null) {
+                    kmsInicial.value = newValue
+                }
+            },
+            label = { Text(text = stringResource(id = R.string.settings_km_start)) },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+            modifier = Modifier.fillMaxWidth()
+        )
+    }
+}
+\end{lstlisting}
+
+% Proposant optimització de Configuracio
+\subsection{Optimització de l'objecte \texttt{Configuracio}}
+L'objecte \texttt{Configuracio} hauria d'actualitzar-se amb els valors dels \texttt{TextField}. Es pot definir com una \texttt{data class} i utilitzar els valors introduïts.
+
+% Exemple de codi per Configuracio
+\begin{lstlisting}[language=Kotlin]
+data class Configuracio(
+    val limitNotifications: Float,
+    val kmsInicial: Float,
+    val kmsAvis: Int
+)
+
+@Composable
+fun ParametritzacioNotificacio(
+    limitNotifications: MutableState<TextFieldValue>,
+    kmsInicial: MutableState<TextFieldValue>,
+    kmsAvis: MutableState<TextFieldValue>,
+    modifier: Modifier = Modifier
+) {
+    val configuracio = Configuracio(
+        limitNotifications = limitNotifications.value.text.toFloatенту
+
+% Continuant el document LaTeX
+FloatOrNull() ?: 0f,
+        kmsInicial = kmsInicial.value.text.toFloatOrNull() ?: 0f,
+        kmsAvis = kmsAvis.value.text.toIntOrNull() ?: 0
+    )
+    Column(modifier = modifier.fillMaxWidth()) {
+        KmsInicials(kmsInicial)
+        Spacer(modifier = Modifier.height(8.dp))
+        KmsAvis(kmsAvis)
+        Spacer(modifier = Modifier.height(8.dp))
+        LimitNotificacions(limitNotifications)
+    }
+}
+\end{lstlisting}
+
+% Proposant implementació del botó
+\subsection{Implementació del botó \texttt{AfegirBtn}}
+El botó \texttt{AfegirBtn} hauria de tenir una acció significativa, com guardar els valors de \texttt{Configuracio}.
+
+% Exemple de codi per AfegirBtn
+\begin{lstlisting}[language=Kotlin]
+@Composable
+fun AfegirBtn(onClick: () -> Unit, modifier: Modifier = Modifier) {
+    Row(
+        modifier = modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.End
+    ) {
+        TextButton(
+            onClick = onClick,
+            enabled = true
+        ) {
+            Text(
+                text = stringResource(id = R.string.settings_add_btn_interval),
+                style = MaterialTheme.typography.labelSmall
+            )
+        }
+    }
+}
+\end{lstlisting}
+
+% Proposant ViewModel
+\subsection{Gestió de l'estat amb ViewModel}
+Es recomana utilitzar un \texttt{ViewModel} per gestionar l'estat de manera centralitzada, especialment si es necessita persistir les dades.
+
+% Exemple de codi per ViewModel
+\begin{lstlisting}[language=Kotlin]
+class SettingsViewModel : ViewModel() {
+    var notificationsEnabled by mutableStateOf(false)
+    var limitNotifications by mutableStateOf(TextFieldValue(""))
+    var kmsInicial by mutableStateOf(TextFieldValue(""))
+    var kmsAvis by mutableStateOf(TextFieldValue(""))
+
+    fun updateConfiguracio(limit: String, inicial: String, avis: String) {
+        limitNotifications = TextFieldValue(limit)
+        kmsInicial = TextFieldValue(inicial)
+        kmsAvis = TextFieldValue(avis)
+    }
+}
+\end{lstlisting}
+
+% Proposant millores visuals
+\subsection{Millora de l'espaiat i estil}
+S'ha d'aplicar un espaiat consistent amb \texttt{Spacer} i utilitzar \texttt{modifier.fillMaxWidth()} als \texttt{TextField} per millorar l'aspecte visual.
+
+% Proposant accessibilitat
+\subsection{Accessibilitat}
+Afegir \texttt{contentDescription} als elements interactius com el \texttt{Switch} per millorar l'accessibilitat.
+
+\section{Codi complet millorat}
+
+% Incloent el codi complet
+A continuació, es presenta el codi complet amb les millores aplicades:
+
+\begin{lstlisting}[language=Kotlin]
+@Composable
+fun SettingsContent(viewModel: SettingsViewModel = viewModel()) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
+    ) {
+        NotificationSwitch(
+            labelId = R.string.settings_enable_notifications,
+            notificationsEnabled = viewModel.notificationsEnabled
+        )
+        Spacer(modifier = Modifier.height(8.dp))
+
+        if (viewModel.notificationsEnabled.value) {
+            ParametritzacioNotificacio(
+                limitNotifications = viewModel.limitNotifications,
+                kmsInicial = viewModel.kmsInicial,
+                kmsAvis = viewModel.kmsAvis
+            )
+            AfegirBtn(
+                onClick = {
+                    viewModel.updateConfiguracio(
+                        viewModel.limitNotifications.value.text,
+                        viewModel.kmsInicial.value.text,
+                        viewModel.kmsAvis.value.text
+                    )
+                }
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+        }
+    }
+}
+
+@Composable
+fun NotificationSwitch(
+    labelId: Int,
+    notificationsEnabled: MutableState<Boolean>,
+    modifier: Modifier = Modifier
+) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = modifier.fillMaxWidth()
+    ) {
+        Text(
+            text = stringResource(id = labelId),
+            style = MaterialTheme.typography.labelSmall
+        )
+        Spacer(modifier = Modifier.weight(1f))
+        Switch(
+            checked = notificationsEnabled.value,
+            onCheckedChange = { notificationsEnabled.value = it },
+            modifier = Modifier.padding(horizontal = 8.dp),
+            contentDescription = stringResource(id = labelId)
+        )
+    }
+}
+
+@Composable
+fun ParametritzacioNotificacio(
+    limitNotifications: MutableState<TextFieldValue>,
+    kmsInicial: MutableState<TextFieldValue>,
+    kmsAvis: MutableState<TextFieldValue>,
+    modifier: Modifier = Modifier
+) {
+    Column(modifier = modifier.fillMaxWidth()) {
+        KmsInicials(kmsInicial)
+        Spacer(modifier = Modifier.height(8.dp))
+        KmsAvis(kmsAvis)
+        Spacer(modifier = Modifier.height(8.dp))
+        LimitNotificacions(limitNotifications)
+    }
+}
+
+@Composable
+fun LimitNotificacions(limitNotifications: MutableState<TextFieldkleValue>, modifier: Modifier = Modifier) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = modifier.fillMaxWidth()
+    ) {
+        TextField(
+            value = limitNotifications.value,
+            onValueChange = { newValue ->
+                if (newValue.text.isEmpty() || newValue.text.toFloatOrNull() != null) {
+                    limitNotifications.value = newValue
+                }
+            },
+            label = { Text(text = stringResource(id = R.string.settings_limit_notificacions)) },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+            modifier = Modifier.fillMaxWidth()
+        )
+    }
+}
+
+@Composable
+fun KmsAvis(kmsAvis: MutableState<TextFieldValue>, modifier: Modifier = Modifier) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = modifier.fillMaxWidth()
+    ) {
+        TextField(
+            value = kmsAvis.value,
+            onValueChange = { newValue ->
+                if (newValue.text.isEmpty() || newValue.text.toIntOrNull() != null) {
+                    kmsAvis.value = newValue
+                    Log.d("DEBUG", "Quilòmetres avís: ${kmsAvis.value.text}")
+                }
+            },
+            label = { Text(text = stringResource(id = R.string.settings_km_avis)) },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+            modifier = Modifier.fillMaxWidth()
+        )
+    }
+}
+
+@Composable
+fun KmsInicials(kmsInicial: MutableState<TextFieldValue>, modifier: Modifier = Modifier) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = modifier.fillMaxWidth()
+    ) {
+        TextField(
+            value = kmsInicial.value,
+            onValueChange = { newValue ->
+                if (newValue.text.isEmpty() || newValue.text.toFloatOrNull() != null) {
+                    kmsInicial.value = newValue
+                }
+            },
+            label = { Text(text = stringResource(id = R.string.settings_km_start)) },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+            modifier = Modifier.fillMaxWidth()
+        )
+    }
+}
+
+@Composable
+fun AfegirBtn(onClick: () -> Unit, modifier: Modifier = Modifier) {
+    Row(
+        modifier = modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.End
+    ) {
+        TextButton(
+            onClick = onClick,
+            enabled = true
+        ) {
+            Text(
+                text = stringResource(id = R.string.settings_add_btn_interval),
+                style = MaterialTheme.typography.labelSmall
+            )
+        }
+    }
+}
+\end{lstlisting}
+
+\section{Conclusió}
+
+% Resumint la validesa i recomanacions
+L'estructura original és vàlida i funcional, però es poden aplicar millores per fer-la més robusta i usable:
+\begin{enumerate}
+    \item Afegir validació d'entrada als \texttt{TextField} per acceptar només números.
+    \item Implementar la lògica del botó \texttt{AfegirBtn} per processar els valors.
+    \item Utilitzar un \texttt{ViewModel} per gestionar l'estat de manera centralitzada.
+    \item Millorar l'espaiat i l'estil per a una millor experiència d'usuari.
+    \item Revisar l'ús de l'objecte \texttt{Configuracio} per assegurar-ne la funcionalitat.
+\end{enumerate}
+
+\end{document}
