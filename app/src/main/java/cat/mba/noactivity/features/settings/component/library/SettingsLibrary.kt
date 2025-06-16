@@ -79,9 +79,12 @@ fun KmsAvis(kmsAvis: MutableState<TextFieldValue>, modifier: Modifier = Modifier
 
         TextField(
             value = kmsAvis.value,
-            onValueChange = { kmsAvis.value = it
-                                Log.d("DEBUG","Quilometres avís: "+kmsAvis.value)
-                            },
+            onValueChange = { kmsAvisEntered ->
+                if (kmsAvisEntered.text.isEmpty() || kmsAvisEntered.text.toFloatOrNull()!= null) {
+                    kmsAvis.value = kmsAvisEntered
+                    Log.d("DEBUG", "Quilometres avís: " + kmsAvis.value)
+                }
+            },
             label = {
                 Text(
                     text = stringResource(id = R.string.settings_km_avis)
