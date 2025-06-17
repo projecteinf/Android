@@ -9,9 +9,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import cat.mba.noactivity.R
+import cat.mba.noactivity.features.settings.component.dataClass.NotificacioConfiguracio
 import cat.mba.noactivity.features.settings.component.library.AfegirBtn
 import cat.mba.noactivity.features.settings.component.library.NotificationSwitch
 import cat.mba.noactivity.features.settings.component.library.ParametritzacioNotificacio
@@ -31,12 +31,12 @@ fun SettingsContent(modifier: Modifier = Modifier) {
 
         if (notificationsEnabled.value) {
 
-            val limitNotifications = remember { mutableStateOf(TextFieldValue()) }
-            val kmsAvis = remember { mutableStateOf(TextFieldValue()) }
-            val kmsInicial = remember { mutableStateOf(TextFieldValue()) }
+            val notificacioEstat = remember { mutableStateOf(NotificacioConfiguracio()) }
 
-            ParametritzacioNotificacio(limitNotifications,kmsInicial,kmsAvis)
-            AfegirBtn(limitNotifications,kmsInicial,kmsAvis)
+            ParametritzacioNotificacio(notificacioEstat)
+            AfegirBtn(notificacioEstat)
+
+
             Spacer(modifier = Modifier.height(8.dp))
         }
     }

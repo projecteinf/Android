@@ -13,10 +13,9 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import cat.mba.noactivity.R
-import cat.mba.noactivity.model.Configuracio
+import cat.mba.noactivity.features.settings.component.dataClass.NotificacioConfiguracio
 
 @Composable
 fun NotificationSwitch(labelId: Int,notificationsEnabled: MutableState<Boolean>, modifier: Modifier = Modifier)
@@ -39,29 +38,25 @@ fun NotificationSwitch(labelId: Int,notificationsEnabled: MutableState<Boolean>,
 
 @Composable
 fun ParametritzacioNotificacio(
-        limitNotifications:MutableState<TextFieldValue>,
-        kmsInicial:MutableState<TextFieldValue>,
-        kmsAvis:MutableState<TextFieldValue>,
+        configuracio:MutableState<NotificacioConfiguracio>,
         modifier: Modifier = Modifier)
 {
-    val configuracio = Configuracio(0f,0f,0);
-    KmsInicials(kmsInicial)
-    KmsAvis(kmsAvis)
-    LimitNotificacions(limitNotifications)
+    KmsInicials(configuracio)
+    KmsAvis(configuracio)
+    LimitNotificacions(configuracio)
 }
 
 @Composable
-fun LimitNotificacions(limitNotifications: MutableState<TextFieldValue>, modifier: Modifier = Modifier) {
+fun LimitNotificacions(configuracio: MutableState<NotificacioConfiguracio>, modifier: Modifier = Modifier) {
     Row (
         verticalAlignment = Alignment.CenterVertically
     )
     {
-
         TextField(
-            value = limitNotifications.value,
-            onValueChange = { limitNotificationsEntered ->
-                if (!limitNotificationsEntered.text.isEmpty() && limitNotificationsEntered.text.toIntOrNull()!= null) {
-                    limitNotifications.value = limitNotificationsEntered
+            value = configuracio.value.limitNotifications,
+            onValueChange = { input ->
+                if (input.text.isNotEmpty() && input.text.toIntOrNull()!= null) {
+                    configuracio.value = configuracio.value.copy(limitNotifications = input)
                 }
             },
             label = {
@@ -75,17 +70,17 @@ fun LimitNotificacions(limitNotifications: MutableState<TextFieldValue>, modifie
 }
 
 @Composable
-fun KmsAvis(kmsAvis: MutableState<TextFieldValue>, modifier: Modifier = Modifier) {
+fun KmsAvis(configuracio: MutableState<NotificacioConfiguracio>, modifier: Modifier = Modifier) {
     Row (
         verticalAlignment = Alignment.CenterVertically
     )
     {
 
         TextField(
-            value = kmsAvis.value,
-            onValueChange = { kmsAvisEntered ->
-                if (!kmsAvisEntered.text.isEmpty() && kmsAvisEntered.text.toFloatOrNull()!= null) {
-                    kmsAvis.value = kmsAvisEntered
+            value = configuracio.value.kmsAvis,
+            onValueChange = { input ->
+                if (input.text.isNotEmpty() && input.text.toFloatOrNull()!= null) {
+                    configuracio.value = configuracio.value.copy(kmsAvis = input)
                 }
             },
             label = {
@@ -99,16 +94,16 @@ fun KmsAvis(kmsAvis: MutableState<TextFieldValue>, modifier: Modifier = Modifier
 }
 
 @Composable
-fun KmsInicials(kmsInicial: MutableState<TextFieldValue>, modifier: Modifier = Modifier) {
+fun KmsInicials(configuracio: MutableState<NotificacioConfiguracio>, modifier: Modifier = Modifier) {
     Row (
         verticalAlignment = Alignment.CenterVertically
     )
     {
         TextField(
-            value = kmsInicial.value,
-            onValueChange = { kmsInicialEntered ->
-                if (!kmsInicialEntered.text.isEmpty() && kmsInicialEntered.text.toFloatOrNull() != null) {
-                    kmsInicial.value = kmsInicialEntered
+            value = configuracio.value.kmsInicial,
+            onValueChange = { input ->
+                if (input.text.isNotEmpty() && input.text.toFloatOrNull() != null) {
+                    configuracio.value = configuracio.value.copy(kmsInicial = input)
                 }
             },
             label = {
@@ -122,16 +117,15 @@ fun KmsInicials(kmsInicial: MutableState<TextFieldValue>, modifier: Modifier = M
 }
 
 @Composable
-fun AfegirBtn(limitNotifications:MutableState<TextFieldValue>,
-              kmsInicial:MutableState<TextFieldValue>,
-              kmsAvis:MutableState<TextFieldValue>,modifier: Modifier = Modifier) {
+fun AfegirBtn(configuracio: MutableState<NotificacioConfiguracio>, modifier: Modifier = Modifier) {
     Row (
 
     )
     {
         TextButton(
             onClick = {
-                Log.d("Info",limitNotifications.value.text+","+kmsInicial.value.text+kmsAvis.value.text)
+                Log.d("Info",configuracio.value.kmsAvis.text+","+
+                        configuracio.value.kmsInicial.text+","+configuracio.value.limitNotifications.text)
             },
             enabled = true,
             modifier = Modifier,
