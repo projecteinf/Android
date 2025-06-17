@@ -1,6 +1,5 @@
 package cat.mba.noactivity.features.settings.component.library
 
-import android.util.Log
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
@@ -59,7 +58,11 @@ fun LimitNotificacions(limitNotifications: MutableState<TextFieldValue>, modifie
 
         TextField(
             value = limitNotifications.value,
-            onValueChange = { limitNotifications.value = it },
+            onValueChange = { limitNotificationsEntered ->
+                if (!limitNotificationsEntered.text.isEmpty() && limitNotificationsEntered.text.toFloatOrNull()!= null) {
+                    limitNotifications.value = limitNotificationsEntered
+                }
+            },
             label = {
                 Text(
                     text = stringResource(id = R.string.settings_limit_notificacions)
@@ -80,9 +83,8 @@ fun KmsAvis(kmsAvis: MutableState<TextFieldValue>, modifier: Modifier = Modifier
         TextField(
             value = kmsAvis.value,
             onValueChange = { kmsAvisEntered ->
-                if (kmsAvisEntered.text.isEmpty() || kmsAvisEntered.text.toFloatOrNull()!= null) {
+                if (!kmsAvisEntered.text.isEmpty() && kmsAvisEntered.text.toFloatOrNull()!= null) {
                     kmsAvis.value = kmsAvisEntered
-                    Log.d("DEBUG", "Quilometres avís: " + kmsAvis.value)
                 }
             },
             label = {
@@ -103,7 +105,11 @@ fun KmsInicials(kmsInicial: MutableState<TextFieldValue>, modifier: Modifier = M
     {
         TextField(
             value = kmsInicial.value,
-            onValueChange = { kmsInicial.value = it },
+            onValueChange = { kmsInicialEntered ->
+                if (!kmsInicialEntered.text.isEmpty() && kmsInicialEntered.text.toFloatOrNull() != null) {
+                    kmsInicial.value = kmsInicialEntered
+                }
+            },
             label = {
                 Text(
                     text = stringResource(id = R.string.settings_km_start)
