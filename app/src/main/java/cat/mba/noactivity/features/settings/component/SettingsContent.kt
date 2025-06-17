@@ -36,12 +36,8 @@ fun SettingsContent(modifier: Modifier = Modifier) {
             val kmsInicial = remember { mutableStateOf(TextFieldValue()) }
 
             ParametritzacioNotificacio(limitNotifications,kmsInicial,kmsAvis)
-            AfegirBtn()
+            AfegirBtn(limitNotifications,kmsInicial,kmsAvis)
             Spacer(modifier = Modifier.height(8.dp))
         }
     }
 }
-
-
-
-

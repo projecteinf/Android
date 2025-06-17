@@ -1,5 +1,6 @@
 package cat.mba.noactivity.features.settings.component.library
 
+import android.util.Log
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
@@ -59,7 +60,7 @@ fun LimitNotificacions(limitNotifications: MutableState<TextFieldValue>, modifie
         TextField(
             value = limitNotifications.value,
             onValueChange = { limitNotificationsEntered ->
-                if (!limitNotificationsEntered.text.isEmpty() && limitNotificationsEntered.text.toFloatOrNull()!= null) {
+                if (!limitNotificationsEntered.text.isEmpty() && limitNotificationsEntered.text.toIntOrNull()!= null) {
                     limitNotifications.value = limitNotificationsEntered
                 }
             },
@@ -121,13 +122,17 @@ fun KmsInicials(kmsInicial: MutableState<TextFieldValue>, modifier: Modifier = M
 }
 
 @Composable
-fun AfegirBtn(modifier: Modifier = Modifier) {
+fun AfegirBtn(limitNotifications:MutableState<TextFieldValue>,
+              kmsInicial:MutableState<TextFieldValue>,
+              kmsAvis:MutableState<TextFieldValue>,modifier: Modifier = Modifier) {
     Row (
 
     )
     {
         TextButton(
-            onClick = {},
+            onClick = {
+                Log.d("Info",limitNotifications.value.text+","+kmsInicial.value.text+kmsAvis.value.text)
+            },
             enabled = true,
             modifier = Modifier,
             content = {
