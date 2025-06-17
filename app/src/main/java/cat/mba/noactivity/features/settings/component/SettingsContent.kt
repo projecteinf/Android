@@ -28,14 +28,11 @@ fun SettingsContent(modifier: Modifier = Modifier) {
 
         NotificationSwitch(R.string.settings_enable_notifications,notificationsEnabled)
 
-
         if (notificationsEnabled.value) {
-
             val notificacioEstat = remember { mutableStateOf(NotificacioConfiguracio()) }
 
             ParametritzacioNotificacio(notificacioEstat)
             AfegirBtn(notificacioEstat)
-
 
             Spacer(modifier = Modifier.height(8.dp))
         }
