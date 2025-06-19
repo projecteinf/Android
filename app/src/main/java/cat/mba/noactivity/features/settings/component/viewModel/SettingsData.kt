@@ -1,4 +1,4 @@
-package cat.mba.noactivity.features.settings.component.dataClass
+package cat.mba.noactivity.features.settings.component.viewModel
 
 import androidx.compose.ui.text.input.TextFieldValue
 
