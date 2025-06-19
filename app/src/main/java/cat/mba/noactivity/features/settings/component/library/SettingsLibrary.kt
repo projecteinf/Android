@@ -3,10 +3,13 @@ package cat.mba.noactivity.features.settings.component.library
 import android.util.Log
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.SmallFloatingActionButton
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
@@ -122,17 +125,14 @@ fun AfegirBtn(configuracio: MutableState<NotificacioConfiguracio>, modifier: Mod
 
     )
     {
-        TextButton(
+        SmallFloatingActionButton(
             onClick = {
                 Log.d("Info",configuracio.value.kmsAvis.text+","+
                         configuracio.value.kmsInicial.text+","+configuracio.value.limitNotifications.text)
             },
-            enabled = true,
             modifier = Modifier,
             content = {
-                Text(
-                    text = stringResource(id = R.string.settings_add_btn_interval),
-                    style = MaterialTheme.typography.labelSmall )
+                Icon(Icons.Filled.Add,"Add configuration button")
             }
         )
     }
