@@ -12,12 +12,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import cat.mba.noactivity.R
 import cat.mba.noactivity.features.settings.component.library.AfegirBtn
 import cat.mba.noactivity.features.settings.component.library.NotificationSwitch
 import cat.mba.noactivity.features.settings.component.library.ParametritzacioNotificacio
 import cat.mba.noactivity.features.settings.component.viewModel.SettingsViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 
 
 @Composable
@@ -31,14 +31,14 @@ fun SettingsContent(modifier: Modifier = Modifier,
             .padding(16.dp)
     ) {
 
-
         NotificationSwitch(R.string.settings_enable_notifications,notificationsEnabled)
 
         if (notificationsEnabled.value) {
             val state by viewModel.estatNotificacio.collectAsState()
+            val dadesValides by viewModel.formulariValid.collectAsState()
 
             ParametritzacioNotificacio(state, viewModel)
-            AfegirBtn(state)
+            AfegirBtn(state, dadesValides)
 
             Spacer(modifier = Modifier.height(8.dp))
         }

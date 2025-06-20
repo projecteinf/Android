@@ -111,21 +111,28 @@ fun KmsInicials(value: TextFieldValue, onValueChange: (TextFieldValue) -> Unit, 
 }
 
 @Composable
-fun AfegirBtn(state: NotificacioConfiguracio, modifier: Modifier = Modifier) {
+fun AfegirBtn(state: NotificacioConfiguracio,
+              dadesValides: Boolean,
+              modifier: Modifier = Modifier) {
     Row (
 
     )
     {
-        SmallFloatingActionButton(
-            onClick = {
-                Log.d("Info",state.kmsAvis.text+","+
-                        state.kmsInicial.text+","+state.limitNotifications.text)
-            },
-            modifier = Modifier,
-            content = {
-                Icon(Icons.Filled.Add,"Add configuration button")
-            }
-        )
+        if (dadesValides) {
+            SmallFloatingActionButton(
+                onClick = {
+                    Log.d("Info",state.kmsAvis.text+","+
+                            state.kmsInicial.text+","+state.limitNotifications.text)
+                },
+                modifier = Modifier,
+                content = {
+                    Icon(Icons.Filled.Add,
+                        contentDescription = "Add configuration button" //,
+                        //tint = if (dadesValides) Color.Unspecified else Color.Gray
+                   )
+                }
+            )
+        }
     }
 }
 
