@@ -113,7 +113,8 @@ fun KmsInicials(value: TextFieldValue, onValueChange: (TextFieldValue) -> Unit, 
 @Composable
 fun AfegirBtn(state: NotificacioConfiguracio,
               dadesValides: Boolean,
-              modifier: Modifier = Modifier) {
+              modifier: Modifier = Modifier,
+              onClick: () -> Unit) {
     Row (
 
     )
@@ -123,6 +124,7 @@ fun AfegirBtn(state: NotificacioConfiguracio,
                 onClick = {
                     Log.d("Info",state.kmsAvis.text+","+
                             state.kmsInicial.text+","+state.limitNotifications.text)
+                    onClick()
                 },
                 modifier = Modifier,
                 content = {
