@@ -1,6 +1,7 @@
 package com.example.mvvmsimple
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -19,7 +20,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             MVVMSimpleTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) {
-                    simpleForm()
+
+                    simpleForm(context = applicationContext)
                 }
             }
         }
