@@ -1,6 +1,7 @@
 package com.example.mvvmsimple.viewModel
 
 import androidx.lifecycle.ViewModel
+import com.example.mvvmsimple.model.ComptadorModel
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 
@@ -10,5 +11,8 @@ class ComptadorViewModel : ViewModel() {
 
     fun incrementar() {
         _comptador.value += 1
+    }
+    fun guardar() {
+        ComptadorModel.guardar()
     }
 }

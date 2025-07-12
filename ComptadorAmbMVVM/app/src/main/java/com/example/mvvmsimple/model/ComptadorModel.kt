@@ -12,6 +12,11 @@ val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name=DATAS
 object DataToStore {
     val COMPTADOR = intPreferencesKey("comptador")
 }
-class Comptador {
+class ComptadorModel {
+    companion object {
+        fun guardar() {
+            
+        }
+    }
 
 }

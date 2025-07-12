@@ -16,17 +16,17 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.mvvmsimple.viewModel.ComptadorViewModel
 
 @Composable
-fun simpleForm(viewModel: ComptadorViewModel = viewModel()) {
-    val comptador by viewModel.comptador.collectAsState()
+fun simpleForm(viewModelComptador: ComptadorViewModel = viewModel()) {
+    val comptador by viewModelComptador.comptador.collectAsState()
 
     Column(Modifier.Companion.padding(16.dp)) {
         TextField(
             value = comptador.toString(),
-            onValueChange = {}
+            onValueChange = { viewModelComptador.guardar() }
         )
 
         IncrementarBtn() {
-            viewModel.incrementar()
+            viewModelComptador.incrementar()
         }
     }
 }
