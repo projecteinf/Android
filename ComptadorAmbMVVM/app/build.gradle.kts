@@ -52,7 +52,10 @@ dependencies {
     // LLibreries necessàries per a viewmodel
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.1")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.9.1")
-    // LLibreries necessàries per a viewmodel
+    // LLibreries necessàries per a model
+    implementation("androidx.datastore:datastore-preferences:1.1.7")
+    // Default
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
