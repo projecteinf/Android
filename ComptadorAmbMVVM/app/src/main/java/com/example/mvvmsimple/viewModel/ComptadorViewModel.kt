@@ -6,11 +6,11 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 
 class ComptadorViewModel : ViewModel() {
-    private var _comptador = MutableStateFlow<Int>(0)
-    val comptador: StateFlow<Int> = _comptador
+    val comptador : StateFlow<Int> = ComptadorModel.comptador
 
     fun incrementar() {
-        _comptador.value += 1
+        ComptadorModel.incrementar()
+        guardar()
     }
     fun guardar() {
         ComptadorModel.guardar()
